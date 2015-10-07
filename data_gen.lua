@@ -3,12 +3,13 @@ require 'gnuplot'
 
 math.randomseed(1)
 
-sample_length = 10000
+sample_length = 100
+sample_amount = 10000
 
 X = torch.zeros(sample_length)
 Y = torch.zeros(sample_length)
 
-for n=2,10 do
+for n=2,sample_amount do
   sample_count = 0
 
   input = {}
@@ -38,7 +39,7 @@ for n=2,10 do
   Y = Y:cat(output,2)
 end
 
-torch.save('data.t7', {X, Y})
+torch.save('data.t7', {X:t(), Y:t()})
 
 --gnuplot.pngfigure('img/timer.png')
 --gnuplot.plot({input},{output})
