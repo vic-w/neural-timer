@@ -35,7 +35,15 @@ function MinibatchLoader:next_batch()
         self.batch_idx = 1
     end
     
-    return X, Y
+    table_x = {}
+    table_y = {}
+    
+    for i=1,X:size(2) do
+      table.insert(table_x, X[{{},{i}}])
+      table.insert(table_y, Y[{{},{i}}])
+    end
+    
+    return table_x, table_y
 end
 
 return MinibatchLoader
